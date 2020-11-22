@@ -1,36 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
+import Box from './components/Box'
 
 function App() {
   const [users, setUsers] = useState([])
   useEffect(()=>{
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((response)=> response.json())
-    .then((users)=> setUsers(users));
-  }
-    )
-    console.log(users)
-
-
+    .then((users)=> setUsers(users))
+    }, []
+  )
+  console.log(users)
+  
   return (
-   
-    
-   <div>
-    
-  {users.map((user, index) => 
-          <div key={index}>
-         <li>
-          
-            {user.name}
-            </li>
-            <li>{user.username}
-            </li>
-            <li> {user.website}
-           </li>
-          </div>
-
-  )} 
-     </div>
-  );
+   <div style= {{width:800, height: 400}}> 
+     {users.map((user) => 
+        <Box 
+          key = {user.id}
+          name={user.name} 
+          username={user.username} 
+          website={user.website}
+          address={user.address}
+          phone={user.phone}
+          email={user.email}
+          company={user.company.name}
+          id={user.id}
+        />
+      )}
+   </div>
+  )
   }
 
-export default App;
+export default App
