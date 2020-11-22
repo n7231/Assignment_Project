@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Box from './components/Box'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+ control: {
+    padding: theme.spacing(2),
+  },
+}));
 
 function App() {
-  const [users, setUsers] = useState([])
+  const classes = useStyles();
+ const [users, setUsers] = useState([])
   useEffect(()=>{
     fetch('https://jsonplaceholder.typicode.com/users')
     .then((response)=> response.json())
@@ -12,7 +24,10 @@ function App() {
   console.log(users)
   
   return (
-   <div style= {{width:400, height: 400}}> 
+    <Grid container className={classes.root} spacing={4}>
+      <Grid item xs={12}>
+        <Grid container justify="center" spacing={4}>
+ 
      {users.map((user) => 
         <Box 
           key = {user.id}
@@ -26,7 +41,10 @@ function App() {
           id={user.id}
         />
       )}
-   </div>
+   
+   </Grid>
+   </Grid>
+   </Grid>
   )
   }
 

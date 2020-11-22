@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { useParams } from "react-router-dom";
-
+import { useParams } from "react-router-dom"
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
 
 
 export default function Details() {
   let { id } = useParams();
-
- // const [cardsInfo, setCardsInfo] = useState({})
- // const [curUser, setCurUser] = useState()
  const [user, setUser] = useState({})
 
   useEffect(()=>{
@@ -17,33 +15,36 @@ export default function Details() {
     }, []
   )
 console.log("user",user)
- /*const ar = cardsInfo ? cardsInfo.find(el => el.id === id) : ''
-  console.log(ar)
-  console.log(id)*/
-
-  //setCurUser(cardsInfo.find(el => el.id === id))
-
-  /*if (!curUser) {
-    return <></>
-  }*/
-
-
-  return(
+ 
+return(
+  <Card style= {{width:400, height: 400, margin:40 }}>
+    <CardContent>
     <div>
-       details page {user.name}
+      <ul>
+      -name:{user.name}
       <br/>
-      {user.username}
-      {/* <br/>
-      {user.website}
+      -username:{user.username}
       <br/>
-      {user.address}
+      -email:{user.email}
       <br/>
-      {user.phone}
+      -phone:{user.phone}
       <br/>
-      {user.email}
+      -company:{user.company ? user.company.name: "" }
       <br/>
-      {user.company.name} */}
-      
-    </div>
+      -website:{user.website}
+      <br/> 
+      -address:
+      <br/> 
+      <li>street:{user.address ? user.address.street: "" }</li>
+      <br/>
+      <li>suite:{user.address ? user.address.suite: "" }</li>
+      <br/> 
+     <li>city:{user.address ? user.address.city: "" }</li>
+     <br/> 
+      <li>Zipcode:{user.address ? user.address.zipcode: "" }</li>
+      </ul>
+     </div>
+     </CardContent>
+     </Card>
     )
 }
