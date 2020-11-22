@@ -12,7 +12,7 @@ function App() {
   console.log(users)
   
   return (
-   <div style= {{width:800, height: 400}}> 
+   <div style= {{width:400, height: 400}}> 
      {users.map((user) => 
         <Box 
           key = {user.id}
